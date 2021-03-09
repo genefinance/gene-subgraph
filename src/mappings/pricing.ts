@@ -3,10 +3,10 @@ import { Pair, Token, Bundle } from '../types/schema'
 import { BigDecimal, Address, BigInt } from '@graphprotocol/graph-ts/index'
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from './helpers'
 
-const WETH_ADDRESS = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
-const USDC_WETH_PAIR = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc' // created 10008355
+const WETH_ADDRESS = '0x757938BBD9a3108Ab1f29628C15d9c8715d2F481'
+// const USDC_WETH_PAIR = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc' // created 10008355
+const USDC_WETH_PAIR = '0x7633d871004180890188370fCBa368787C04A157' // created 10008355 // TODO: Fix this once WETH/STABLECOIN is deployed, this is ETP <<=
 const DAI_WETH_PAIR = '0xa478c2975ab1ea89e8196811f51a7b7ade33eb11' // created block 10042267
-// const USDT_WETH_PAIR = '0x0d4a11d5eeaac28ec3f61d100daf4d40471f1852' // created block 10093341
 const USDT_WETH_PAIR = '0x992133e991cefab74eee32eacca3bac071cf1c5b' // created block 10093341
 
 export function getEthPriceInUSD(): BigDecimal {
@@ -43,15 +43,15 @@ export function getEthPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2', // WETH
+  '0x757938BBD9a3108Ab1f29628C15d9c8715d2F481', // WETH
   // '0x6b175474e89094c44da98b954eedeac495271d0f', // DAI
   // '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', // USDC
-  '0xdac17f958d2ee523a2206206994597c13d831ec7', // USDT
-  '0xf6ec87DFE1Ed3a7256Cc0c38e3c8139103e9aF3b', // GENE
-  '0xb1dF7CE84253ffcd01D92fA6662e761f86b61982', // DNA
-  '0x6A217345AEc9F9e64928793716dbEf15b8Ffe90D', // ETP
-  '0xe92585F17A42Ee815a0bA448657f41f52f6b23e5', //DLP
-  '0x11eef04c884e24d9b7b4760e7476d06ddf797f36' //MX
+  '0x839CBAd392F0ef3E04Be01b7CC5F676649857c54', // USDT
+  '0x14d8CE560E42A670Fb1E56baf44b173c9f81496f', // GENE
+  '0x703DaF890eC6C3Dc14De6EEB7d25F842d358851f', // DNA
+  '0x239DD695ec4ACE6aaCfc4EE0691dEec900403032' // ETP
+  // '0xe92585F17A42Ee815a0bA448657f41f52f6b23e5', //DLP
+  // '0x11eef04c884e24d9b7b4760e7476d06ddf797f36' //MX
   // '0x0000000000085d4780b73119b644ae5ecd22b376', // TUSD
   // '0x5d3a536e4d6dbd6114cc1ead35777bab948e3643', // cDAI
   // '0x39aa39c021dfbae8fac545936693ac917d5e7563', // cUSDC
