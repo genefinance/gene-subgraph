@@ -8,7 +8,7 @@ dataSources:
     name: Factory
     network: andromeda
     source:
-      address: "0xbD52FCD80dc96b6C908a19970FF727E88EdA5Ba7"
+      address: "0x1fB6b1a82E104bBC8da59205F609C49A46f31AF0"
       abi: Factory
       startBlock: 1
     mapping:

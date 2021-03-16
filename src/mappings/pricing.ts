@@ -3,9 +3,9 @@ import { Pair, Token, Bundle } from '../types/schema'
 import { BigDecimal, Address, BigInt } from '@graphprotocol/graph-ts/index'
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from './helpers'
 
-const WETH_ADDRESS = '0x757938BBD9a3108Ab1f29628C15d9c8715d2F481'
+const WETH_ADDRESS = '0x757938bbd9a3108ab1f29628c15d9c8715d2f481'
 // const USDC_WETH_PAIR = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc' // created 10008355
-const USDC_WETH_PAIR = '0x7633d871004180890188370fCBa368787C04A157' // created 10008355 // TODO: Fix this once WETH/STABLECOIN is deployed, this is ETP <<=
+const USDC_WETH_PAIR = '0x51866AC12965cdc30CF0640615E445253Ce8616D' // created 10008355 // TODO: Fix this once WETH/STABLECOIN is deployed, this is ETP <<=
 const DAI_WETH_PAIR = '0xa478c2975ab1ea89e8196811f51a7b7ade33eb11' // created block 10042267
 const USDT_WETH_PAIR = '0x992133e991cefab74eee32eacca3bac071cf1c5b' // created block 10093341
 
@@ -43,13 +43,13 @@ export function getEthPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  '0x757938BBD9a3108Ab1f29628C15d9c8715d2F481', // WETH
+  '0x757938bbd9a3108ab1f29628c15d9c8715d2f481', // WETH
   // '0x6b175474e89094c44da98b954eedeac495271d0f', // DAI
   // '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', // USDC
-  '0x839CBAd392F0ef3E04Be01b7CC5F676649857c54', // USDT
-  '0x14d8CE560E42A670Fb1E56baf44b173c9f81496f', // GENE
-  '0x703DaF890eC6C3Dc14De6EEB7d25F842d358851f', // DNA
-  '0x239DD695ec4ACE6aaCfc4EE0691dEec900403032' // ETP
+  '0xbd52fcd80dc96b6c908a19970ff727e88eda5ba7', // USDT
+  '0xd63CC5751eD70D0c722573006A9b1B97C54692C1', // GENE
+  '0x78338B181372304D74B28a2da057229c4024D8C2', // DNA
+  '0x757938bbd9a3108ab1f29628c15d9c8715d2f481' // ETP
   // '0xe92585F17A42Ee815a0bA448657f41f52f6b23e5', //DLP
   // '0x11eef04c884e24d9b7b4760e7476d06ddf797f36' //MX
   // '0x0000000000085d4780b73119b644ae5ecd22b376', // TUSD
