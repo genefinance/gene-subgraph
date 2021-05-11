@@ -6,13 +6,13 @@
   "scripts": {
     "codegen": "graph codegen --output-dir src/types/",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ genefinance/gene-finance",
-    "create-local": "graph create --node http://164.90.169.154:8020/ genefinance/gene-finance",
-    "remove-local": "graph remove --node http://164.90.169.154:8020/ genefinance/gene-finance",
-    "deploy-local": "graph deploy --node http://164.90.169.154:8020/ --ipfs http://164.90.169.154:5001/ genefinance/gene-finance",
-    "deploy-local-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001/ genefinance/gene-finance",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ genefinance/gene-finance-test",
+    "create-local": "graph create --node http://10.10.10.248:8010/ genefinance/gene-finance-test",
+    "remove-local": "graph remove --node http://10.10.10.248:8010/ genefinance/gene-finance-test",
+    "deploy-local": "graph deploy --node http://10.10.10.248:8010/ --ipfs http://10.10.10.248:5001/ genefinance/gene-finance-test",
+    "deploy-local-local": "graph deploy --node http://localhost:8010/ --ipfs http://localhost:5001/ genefinance/gene-finance-test",
     "deploy-staging": "graph deploy $THE_GRAPH_GITHUB_USER/$THE_GRAPH_SUBGRAPH_NAME /gene-subgraph --ipfs https://api.staging.thegraph.com/ipfs/ --node https://api.staging.thegraph.com/deploy/",
-    "watch-local": "graph deploy genefinance/gene-finance --watch --debug --node http://164.90.169.154/:8020/ --ipfs http://164.90.169.154/:5001"
+    "watch-local": "graph deploy genefinance/gene-finance --watch --debug --node http://10.10.10.248/:8010/ --ipfs http://10.10.10.248/:5001"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.16.0",
