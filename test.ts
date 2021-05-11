@@ -3,8 +3,8 @@ export function getUSDRate(token: Address, block: ethereum.Block): BigDecimal {
 
     if (token != USDT_ADDRESS) {
       let address = block.number.le(BigInt.fromI32(10829344))
-        ? UNISWAP_WETH_USDT_PAIR_ADDRESS
-        : SUSHISWAP_WETH_USDT_PAIR_ADDRESS
+        ? UNISWAP_WETP_USDT_PAIR_ADDRESS
+        : SUSHISWAP_WETP_USDT_PAIR_ADDRESS
 
       const tokenPriceETH = getEthRate(token, block)
 

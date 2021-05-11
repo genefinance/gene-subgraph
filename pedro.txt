@@ -1,0 +1,8 @@
+username: pedro
+password: joFkbtczbnSmWScR
+server: metaverse.5co8r.mongodb.net
+databases: mvm-mainnet, mvm-testnet
+url: mongodb+srv://<username>:<password>@metaverse.5co8r.mongodb.net/<dbname>?retryWrites=true&w=majority
+
+
+transaction hash MetaverseBlocks: 0xf50bc49463a1be135a01de3d3174e0cf38c562a0a70bcaabf173b382e9fbb412
