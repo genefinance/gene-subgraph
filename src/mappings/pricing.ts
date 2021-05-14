@@ -26,14 +26,12 @@ export function getEthPriceInUSD(): BigDecimal {
     }
     // let daiWeight = daiPair.reserve1.div(totalLiquidityETH)
     // let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
-    let usdtWeight = usdtPair.reserve0.div(totalLiquidityETH)
+    // let usdtWeight = usdtPair.reserve0.div(totalLiquidityETH)
     // return daiPair.token0Price
-    return (
-      usdtPair.token0Price
-        // .times(daiWeight)
-        // .plus(usdcPair.token0Price.times(usdcWeight))
-        .plus(usdtPair.token1Price.times(usdtWeight))
-    )
+    return usdtPair.token0Price
+    // .times(daiWeight)
+    // .plus(usdcPair.token0Price.times(usdcWeight))
+    // .plus(usdtPair.token1Price.times(usdtWeight))
     // dai and USDC have been created
     // } else if (daiPair !== null && usdcPair !== null) {
     //   let totalLiquidityETH = daiPair.reserve1.plus(usdcPair.reserve1)
