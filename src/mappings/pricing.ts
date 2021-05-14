@@ -3,12 +3,12 @@ import { Pair, Token, Bundle } from '../types/schema'
 import { BigDecimal, Address, BigInt } from '@graphprotocol/graph-ts/index'
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from './helpers'
 
-const WETP_ADDRESS = '0x757938BBD9a3108Ab1f29628C15d9c8715d2F481'
+const WETP_ADDRESS = '0x757938bbd9a3108ab1f29628c15d9c8715d2f481'
 // const USDC_WETP_PAIR = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc' // created 10008355
 // const USDC_WETP_PAIR = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc' // created 10008355 // TODO: Fix this once WETP/STABLECOIN is deployed, this is ETP <<=
 // const DAI_WETP_PAIR = '0xa478c2975ab1ea89e8196811f51a7b7ade33eb11' // created block 10042267
 // const USDT_WETP_PAIR = '0x51866AC12965cdc30CF0640615E445253Ce8616D' // created block 10093341 //TODO: This is WETP-USDT === capital letter
-const USDT_WETP_PAIR = '0x662B1B37EB45925adCdc76437ad9f1865fcEcBC8'
+const USDT_WETP_PAIR = '0x662b1b37eb45925adcdc76437ad9f1865fcecbc8'
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
