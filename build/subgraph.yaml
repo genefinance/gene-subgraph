@@ -8,11 +8,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: andromeda
+    network: mainnet
     source:
       address: "0x1fB6b1a82E104bBC8da59205F609C49A46f31AF0"
       abi: Factory
-      startBlock: 1
+      startBlock: 10881
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
@@ -36,7 +36,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pair
-    network: andromeda
+    network: mainnet
     source:
       abi: Pair
     mapping:

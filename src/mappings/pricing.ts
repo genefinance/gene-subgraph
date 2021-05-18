@@ -3,39 +3,44 @@ import { Pair, Token, Bundle } from '../types/schema'
 import { BigDecimal, Address, BigInt } from '@graphprotocol/graph-ts/index'
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from './helpers'
 
-const WETH_ADDRESS = '0x757938bbd9a3108ab1f29628c15d9c8715d2f481'
-// const USDC_WETH_PAIR = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc' // created 10008355
-const USDC_WETH_PAIR = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc' // created 10008355 // TODO: Fix this once WETH/STABLECOIN is deployed, this is ETP <<=
-const DAI_WETH_PAIR = '0xa478c2975ab1ea89e8196811f51a7b7ade33eb11' // created block 10042267
-const USDT_WETH_PAIR = '0x51866AC12965cdc30CF0640615E445253Ce8616D' // created block 10093341 //TODO: This is WETP-USDT
+const WETP_ADDRESS = '0x757938bbd9a3108ab1f29628c15d9c8715d2f481'
+// const USDC_WETP_PAIR = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc' // created 10008355
+// const USDC_WETP_PAIR = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc' // created 10008355 // TODO: Fix this once WETP/STABLECOIN is deployed, this is ETP <<=
+// const DAI_WETP_PAIR = '0xa478c2975ab1ea89e8196811f51a7b7ade33eb11' // created block 10042267
+// const USDT_WETP_PAIR = '0x51866AC12965cdc30CF0640615E445253Ce8616D' // created block 10093341 //TODO: This is WETP-USDT === capital letter
+const USDT_WETP_PAIR = '0x662b1b37eb45925adcdc76437ad9f1865fcecbc8'
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
-  let daiPair = Pair.load(DAI_WETH_PAIR) // dai is token0
-  let usdcPair = Pair.load(USDC_WETH_PAIR) // usdc is token0
-  let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token1
+  // let daiPair = Pair.load(DAI_WETP_PAIR) // dai is token0
+  // let usdcPair = Pair.load(USDC_WETP_PAIR) // usdc is token0
+  let usdtPair = Pair.load(USDT_WETP_PAIR) // usdt is token1
 
   // all 3 have been created
-  if (daiPair !== null && usdcPair !== null && usdtPair !== null) {
-    // if (usdtPair !== null) {
-    let totalLiquidityETH = daiPair.reserve1.plus(usdcPair.reserve1).plus(usdtPair.reserve0)
-    // let totalLiquidityETH = usdtPair.reserve0
-    let daiWeight = daiPair.reserve1.div(totalLiquidityETH)
-    let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
-    let usdtWeight = usdtPair.reserve0.div(totalLiquidityETH)
-    return daiPair.token0Price
-      .times(daiWeight)
-      .plus(usdcPair.token0Price.times(usdcWeight))
-      .plus(usdtPair.token1Price.times(usdtWeight))
+  // if (daiPair !== null && usdcPair !== null && usdtPair !== null) {
+  if (usdtPair !== null) {
+    // let totalLiquidityETH = daiPair.reserve1.plus(usdcPair.reserve1).plus(usdtPair.reserve0)
+    let totalLiquidityETH = usdtPair.reserve0
+    if (totalLiquidityETH <= ZERO_BD) {
+      return ZERO_BD
+    }
+    // let daiWeight = daiPair.reserve1.div(totalLiquidityETH)
+    // let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
+    // let usdtWeight = usdtPair.reserve0.div(totalLiquidityETH)
+    // return daiPair.token0Price
+    return usdtPair.token0Price
+    // .times(daiWeight)
+    // .plus(usdcPair.token0Price.times(usdcWeight))
+    // .plus(usdtPair.token1Price.times(usdtWeight))
     // dai and USDC have been created
-  } else if (daiPair !== null && usdcPair !== null) {
-    let totalLiquidityETH = daiPair.reserve1.plus(usdcPair.reserve1)
-    let daiWeight = daiPair.reserve1.div(totalLiquidityETH)
-    let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
-    return daiPair.token0Price.times(daiWeight).plus(usdcPair.token0Price.times(usdcWeight))
+    // } else if (daiPair !== null && usdcPair !== null) {
+    //   let totalLiquidityETH = daiPair.reserve1.plus(usdcPair.reserve1)
+    //   let daiWeight = daiPair.reserve1.div(totalLiquidityETH)
+    //   let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
+    //   return daiPair.token0Price.times(daiWeight).plus(usdcPair.token0Price.times(usdcWeight))
     //   // USDC is the only pair so far
-  } else if (usdtPair !== null) {
-    return usdtPair.token1Price
+    // } else if (usdcPair !== null) {
+    //   return usdcPair.token0Price
   } else {
     return ZERO_BD
   }
@@ -43,14 +48,13 @@ export function getEthPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  '0x757938bbd9a3108ab1f29628c15d9c8715d2f481', // WETH
+  '0x757938bbd9a3108ab1f29628c15d9c8715d2f481', // WETP
   // '0x6b175474e89094c44da98b954eedeac495271d0f', // DAI
   // '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', // USDC
-  '0xbd52fcd80dc96b6c908a19970ff727e88eda5ba7', // USDT
-  '0x703DaF890eC6C3Dc14De6EEB7d25F842d358851f', // GENE
-  '0x239DD695ec4ACE6aaCfc4EE0691dEec900403032' // DNA
-  // '0x757938bbd9a3108ab1f29628c15d9c8715d2f481' // ETP
-  // '0xe92585F17A42Ee815a0bA448657f41f52f6b23e5', //DLP
+  '0x623761f60d677addbd5a07385e037105a13201ef', // USDT
+  '0xd2aee12b53895ff8ab99f1b7f73877983729888f', //GENE
+  '0xc35f4bfa9ea8946a3740adfeb4445396834adf62' // DNA
+  // '0x86c234f1afdf3b9c82b142c3101bfec769ff278a' //DLP
   // '0x11eef04c884e24d9b7b4760e7476d06ddf797f36' //MX
   // '0x0000000000085d4780b73119b644ae5ecd22b376', // TUSD
   // '0x5d3a536e4d6dbd6114cc1ead35777bab948e3643', // cDAI
@@ -77,7 +81,7 @@ let MINIMUM_LIQUIDITY_THRESHOLD_ETH = BigDecimal.fromString('2')
  * @todo update to be derived ETH (add stablecoin estimates)
  **/
 export function findEthPerToken(token: Token): BigDecimal {
-  if (token.id == WETH_ADDRESS) {
+  if (token.id == WETP_ADDRESS) {
     return ONE_BD
   }
   // loop through whitelist and check if paired with any
